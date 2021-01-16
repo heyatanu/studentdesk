@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={BookApiFetch}/>
+        <Route exact path="/studentdesk" component={BookApiFetch}/>
         <Route component={Newbooks}/>
       </Switch>
     </>
