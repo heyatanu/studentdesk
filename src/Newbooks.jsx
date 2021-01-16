@@ -37,7 +37,7 @@ const Newbooks = () =>{
         <div className="newbook_photo_div">
         
             <div className="newbook_photo_div_contant">
-                <img src={BookDetails_map.photo}alt="this"/>
+                <img src={BookDetails_map.photo}alt="this" width="180"/>
             </div>
         </div>
             <div className="newbook_dis_div">
@@ -45,7 +45,7 @@ const Newbooks = () =>{
                     <p id="newbook_name">{BookDetails_map.name}</p>
                     <ul className="newbook_condition">
                         {BookDetails_map.price>0?<li>On Sell</li>:<li>For Free</li>}
-                        {BookDetails_map.price>0?<li className="newbook_ac">Price: &#8377;{BookDetails_map.price}<span className="newbook_th">&#8377;{BookDetails_map.mrp}</span></li>:<li className="newbook_ac">For Free</li>}
+                        {BookDetails_map.price>0?<li className="newbook_ac">Price: &#8377;{BookDetails_map.price}<span className="newbook_th">&#8377;{BookDetails_map.mrp}</span></li>:""}
                         {BookDetails_map.condition==2?<li>Book condition New</li>:<li>Book condition Used</li>}
                     </ul>
                     <div className="col-lg-6 col-md-6 col-6 newbook_post_date">
