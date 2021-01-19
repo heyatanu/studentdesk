@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PageNum from './PageNum';
+import Preloader from './Preloader';
 import Book_Navbar from './Books_Navbar';
 import Book_MainSec from './Book_MainSec';
 import Book_Footer from './Book_Footer';
@@ -14,14 +15,17 @@ function BookApiFetch(){
     const [Books,setBooks]=useState([])
     useEffect(function(){
         async function getdata(){
+            
             const res= await axios.get(`http://studentdesk.in/api/v1/newarrivals?&apiname=newArrivals`)
+            setLoading(0)
             setTotalP(res.data.data.length)
                 setBooks(res.data.data)
                 // console.log(res.data.data)
         }
         getdata();
+ 
     });
-
+    const [loading,setLoading]=useState(1);
     const [totalP,setTotalP]=useState(1);
     const [showPerPage,setShowPerPage]=useState(10);
     const [pagination,setPagination]=useState({
@@ -35,8 +39,10 @@ function BookApiFetch(){
 
 
     return(
-        
+         
     <>
+        
+     
         <Book_Navbar/>
         <section className="Main_sec">
         <div className="container">
@@ -89,9 +95,8 @@ function BookApiFetch(){
 
         ))}
         <div className="col-lg-9 col-md-12 col-12 main_right_sec" style={{textAlign:'center'}}>
-        <PageNum showPerPage={showPerPage}
-            onPaginatonChangeValue={onPaginatonChangeValue}
-            total={totalP}/>
+        {loading==1 ? <Preloader/> :<PageNum showPerPage={showPerPage}onPaginatonChangeValue={onPaginatonChangeValue}total={totalP}/>}
+        {/* <PageNum showPerPage={showPerPage}onPaginatonChangeValue={onPaginatonChangeValue}total={totalP}/> */}
         </div>
         </div>
         </div>

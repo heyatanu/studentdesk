@@ -4,6 +4,7 @@ import Book_Navbar from './Books_Navbar';
 import Book_Footer from './Book_Footer';
 import RecentBooks from './Recent_Books';
 import author_logo from './Images/author_logo.png';
+import Preloader from './Preloader';
 
 var monthar=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
@@ -21,23 +22,25 @@ const Newbooks = () =>{
     useEffect(function(){
         async function getdata(){
             const res= await axios.get(`http://studentdesk.in/api/v1/book-details/${book_id}`)
+            setNewboading(0)
             setBookDetails(res.data.data)
             console.log(res.data.data)
         }
         getdata();
     });
-
+    const [Newloading,setNewboading]=useState(1);
     return(
     <>
     <Book_Navbar/>
         <div className="newbook_details_main">
+        {Newloading==1 ? <Preloader/> :""}
         { BookDetails.map((BookDetails_map) => (  
           <React.Fragment>
         <div className="Newbook1sthalf">
         <div className="newbook_photo_div">
         
             <div className="newbook_photo_div_contant">
-                <img src={BookDetails_map.photo}alt="this" width="180"/>
+                <img src={BookDetails_map.photo}alt="this" width="160"/>
             </div>
         </div>
             <div className="newbook_dis_div">
